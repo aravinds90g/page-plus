@@ -14,9 +14,9 @@ services:
       dockerfile: Dockerfile
     container_name: page-plus-backend
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
-      PORT: 5000
+      PORT: 8080
       MONGO_URI: mongodb://mongodb:27017/page-plus
       JWT_SECRET: super_secret_key_for_jwt_token_12345
       JWT_EXPIRE: 30d
@@ -36,7 +36,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:5000/api
+      NEXT_PUBLIC_API_URL: http://localhost:8080/api
     depends_on:
       - backend
     volumes:
