@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile
     container_name: page-plus-frontend
     ports:
-      - "5000:5000"
+      - "3000:3000"
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:8080/api
     depends_on:
