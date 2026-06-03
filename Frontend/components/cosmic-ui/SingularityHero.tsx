@@ -41,9 +41,7 @@ export default function SingularityHero() {
               LIBRARY
               <span className="absolute -right-6 md:-right-12 top-1/2 w-2 h-2 md:w-3 md:h-3 bg-solar-flare rounded-full animate-ping" />
             </span>
-            <span className="block text-starlight cinzel-decorative-black text-5xl sm:text-7xl md:text-[90px] lg:text-[110px] leading-[0.9] tracking-tighter my-10">
-              ASCENDANT
-            </span>
+            
           </motion.h1>
 
           {/* Badges row */}
