@@ -123,7 +123,7 @@ exports.updateBook = async (req, res, next) => {
 
     // Update book
     book = await Book.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
+      returnDocument: 'after',
       runValidators: true,
     });
 

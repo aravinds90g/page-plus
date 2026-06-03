@@ -7,6 +7,11 @@ services:
     volumes:
       - mongodb_data:/data/db
     restart: unless-stopped
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
@@ -18,20 +23,20 @@ services:
     environment:
       PORT: 8080
       MONGO_URI: mongodb://mongodb:27017/page-plus
-      JWT_SECRET: super_secret_key_for_jwt_token_12345
+      JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRE: 30d
-      NODE_ENV: development
+      NODE_ENV: production
     depends_on:
-      - mongodb
-    volumes:
-      - ./Backend/src:/app/src
-      - /app/node_modules
+      mongodb:
+        condition: service_healthy
     restart: unless-stopped
 
   frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8080/api
     container_name: page-plus-frontend
     ports:
       - "3000:3000"
@@ -39,10 +44,6 @@ services:
       NEXT_PUBLIC_API_URL: http://localhost:8080/api
     depends_on:
       - backend
-    volumes:
-      - ./Frontend:/app
-      - /app/node_modules
-      - /app/.next
     restart: unless-stopped
 
 volumes:
