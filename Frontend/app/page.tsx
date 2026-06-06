@@ -63,7 +63,7 @@ export default function PortalPage() {
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-blood-moon/50" />
               </div>
               <h2 className="cinzel-decorative-black text-3xl md:text-4xl text-starlight mb-3">
-                Featured Constellations
+                Featured Constellation
               </h2>
               <p className="font-crimson text-void-silver text-base md:text-lg max-w-lg mx-auto">
                 A glimpse into the most luminous tomes within our archive
